@@ -25,6 +25,8 @@ public class MainActivity extends Activity {
 	private static final int _android_content_ContentResolver_callQuery = 7;
 	private static final int _android_content_ContentResolver_callUpdate = 8;
 	private static final int _android_content_ContentResolver_callGetContentResolver = 9;
+	private static final int _android_content_ContentResolver_acquireUnstableContentProviderClient = 10;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -34,7 +36,7 @@ public class MainActivity extends Activity {
 		btn1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				long sum = AndroidContentContextWrapper.callGetContentResolver(MainActivity.this);
+				long sum = AndroidContentContentResolver.callAcquireContentProviderClient(MainActivity.this);
 				System.out.println("" + sum);
 			}
 		});
@@ -63,6 +65,8 @@ public class MainActivity extends Activity {
 			return AndroidContentContentResolver.callUpdate(this);
 		case _android_content_ContentResolver_callGetContentResolver:
 			return AndroidContentContextWrapper.callGetContentResolver(this);
+		case _android_content_ContentResolver_acquireUnstableContentProviderClient:
+			return AndroidContentContentResolver.callAcquireUnstableContentProviderClient(this);
 		default:
 			return 0l;
 		}
