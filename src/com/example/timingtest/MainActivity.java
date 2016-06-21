@@ -20,6 +20,8 @@ public class MainActivity extends Activity {
 	private static final int _android_content_ContentResolver_delete = 2;
 	private static final int _android_content_ContentResolver_getType = 3;
 	private static final int _android_content_ContentResolver_insert = 4;
+	private static final int _android_content_ContentResolver_callOpenAssetFileDescriptor = 5;
+	private static final int _android_content_ContentResolver_callOpenInputStream = 6;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -29,7 +31,7 @@ public class MainActivity extends Activity {
 		btn1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				long sum = timingApi(4);
+				long sum =AndroidContentContentResolver.callOpenInputStream(MainActivity.this);
 				System.out.println("" + sum);
 			}
 		});
@@ -48,6 +50,10 @@ public class MainActivity extends Activity {
 			return AndroidContentContentResolver.callGetType(this);
 		case _android_content_ContentResolver_insert:
 			return AndroidContentContentResolver.callInsert(this);
+		case _android_content_ContentResolver_callOpenAssetFileDescriptor:
+			return AndroidContentContentResolver.callOpenAssetFileDescriptor(this);
+		case _android_content_ContentResolver_callOpenInputStream:
+			return AndroidContentContentResolver.callOpenInputStream(this);
 		default:
 			return 0l;
 		}

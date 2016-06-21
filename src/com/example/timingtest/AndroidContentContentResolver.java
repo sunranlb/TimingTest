@@ -1,5 +1,7 @@
 package com.example.timingtest;
 
+import java.io.FileNotFoundException;
+
 import android.content.ContentResolver;
 import android.content.ContentUris;
 import android.content.ContentValues;
@@ -30,11 +32,12 @@ public class AndroidContentContentResolver {
 	public static long callDelete(Context c) {
 		ContentResolver cr = c.getContentResolver();
 		long b = System.nanoTime();
-		cr.delete(ContactsContract.Contacts.CONTENT_URI, "sid in (?,?)", new String[]{"1","2"});
+		cr.delete(ContactsContract.Contacts.CONTENT_URI, "sid in (?,?)",
+				new String[] { "1", "2" });
 		long e = System.nanoTime();
 		return e - b;
 	}
-	
+
 	public static long callGetType(Context c) {
 		ContentResolver cr = c.getContentResolver();
 		long b = System.nanoTime();
@@ -42,20 +45,51 @@ public class AndroidContentContentResolver {
 		long e = System.nanoTime();
 		return e - b;
 	}
-	
+
 	public static long callInsert(Context c) {
 		ContentResolver cr = c.getContentResolver();
 		ContentValues v = new ContentValues();
-		Uri rawContactUri = cr.insert(RawContacts.CONTENT_URI,
-                v);         
-        long rawContactId = ContentUris.parseId(rawContactUri);
-        v.clear();
-        v.put(Data.RAW_CONTACT_ID, rawContactId);
-        v.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
-        v.put(StructuredName.DISPLAY_NAME, "zds");    
+		Uri rawContactUri = cr.insert(RawContacts.CONTENT_URI, v);
+		long rawContactId = ContentUris.parseId(rawContactUri);
+		v.clear();
+		v.put(Data.RAW_CONTACT_ID, rawContactId);
+		v.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
+		v.put(StructuredName.DISPLAY_NAME, "zds");
 		long b = System.nanoTime();
+		// System.out.println(cr.insert(Data.CONTENT_URI, v));
 		cr.insert(Data.CONTENT_URI, v);
 		long e = System.nanoTime();
+		return e - b;
+	}
+
+	public static long callOpenAssetFileDescriptor(Context c) {
+		ContentResolver cr = c.getContentResolver();
+		long b = 0, e = 0;
+		try {
+			b = System.nanoTime();
+			cr.openAssetFileDescriptor(
+					Uri.parse("android.resource://com.example.timingtest/raw/test"),
+					"r");
+			e = System.nanoTime();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			return -1l;
+		}
+		return e - b;
+	}
+
+	public static long callOpenInputStream(Context c) {
+		ContentResolver cr = c.getContentResolver();
+		long b = 0, e = 0;
+		try {
+			b = System.nanoTime();
+			cr.openInputStream(Uri
+					.parse("android.resource://com.example.timingtest/raw/test"));
+			e = System.nanoTime();
+		} catch (FileNotFoundException e1) {
+			e1.printStackTrace();
+			return -1l;
+		}
 		return e - b;
 	}
 }
