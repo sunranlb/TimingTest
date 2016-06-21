@@ -20,12 +20,13 @@ public class MainActivity extends Activity {
 	private static final int _android_content_ContentResolver_delete = 2;
 	private static final int _android_content_ContentResolver_getType = 3;
 	private static final int _android_content_ContentResolver_insert = 4;
-	private static final int _android_content_ContentResolver_callOpenAssetFileDescriptor = 5;
-	private static final int _android_content_ContentResolver_callOpenInputStream = 6;
-	private static final int _android_content_ContentResolver_callQuery = 7;
-	private static final int _android_content_ContentResolver_callUpdate = 8;
-	private static final int _android_content_ContentResolver_callGetContentResolver = 9;
+	private static final int _android_content_ContentResolver_openAssetFileDescriptor = 5;
+	private static final int _android_content_ContentResolver_openInputStream = 6;
+	private static final int _android_content_ContentResolver_query = 7;
+	private static final int _android_content_ContentResolver_update = 8;
+	private static final int _android_content_ContentWrapper_getContentResolver = 9;
 	private static final int _android_content_ContentResolver_acquireUnstableContentProviderClient = 10;
+	private static final int _android_util_base64_decode = 11;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -55,18 +56,20 @@ public class MainActivity extends Activity {
 			return AndroidContentContentResolver.callGetType(this);
 		case _android_content_ContentResolver_insert:
 			return AndroidContentContentResolver.callInsert(this);
-		case _android_content_ContentResolver_callOpenAssetFileDescriptor:
+		case _android_content_ContentResolver_openAssetFileDescriptor:
 			return AndroidContentContentResolver.callOpenAssetFileDescriptor(this);
-		case _android_content_ContentResolver_callOpenInputStream:
+		case _android_content_ContentResolver_openInputStream:
 			return AndroidContentContentResolver.callOpenInputStream(this);
-		case _android_content_ContentResolver_callQuery:
+		case _android_content_ContentResolver_query:
 			return AndroidContentContentResolver.callQuery(this);
-		case _android_content_ContentResolver_callUpdate:
+		case _android_content_ContentResolver_update:
 			return AndroidContentContentResolver.callUpdate(this);
-		case _android_content_ContentResolver_callGetContentResolver:
+		case _android_content_ContentWrapper_getContentResolver:
 			return AndroidContentContextWrapper.callGetContentResolver(this);
 		case _android_content_ContentResolver_acquireUnstableContentProviderClient:
 			return AndroidContentContentResolver.callAcquireUnstableContentProviderClient(this);
+		case _android_util_base64_decode:
+			return AndroidUtilBase64.callDecode();
 		default:
 			return 0l;
 		}
