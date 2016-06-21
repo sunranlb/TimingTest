@@ -8,7 +8,7 @@ public class AndroidAccountsAccountManager {
 	public static long callGetAccounts(Context c) {
 		AccountManager am = AccountManager.get(c);
 		long b = System.nanoTime();
-		Account[] acc = am.getAccounts();
+		am.getAccounts();
 		long e = System.nanoTime();
 		return e - b;
 	}
