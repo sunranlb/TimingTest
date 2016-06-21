@@ -27,6 +27,7 @@ public class MainActivity extends Activity {
 	private static final int _android_content_ContentWrapper_getContentResolver = 9;
 	private static final int _android_content_ContentResolver_acquireUnstableContentProviderClient = 10;
 	private static final int _android_util_base64_decode = 11;
+	private static final int _android_util_base64_encode = 12;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +38,7 @@ public class MainActivity extends Activity {
 		btn1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				long sum = AndroidContentContentResolver.callAcquireContentProviderClient(MainActivity.this);
+				long sum = AndroidUtilBase64.callEncode();
 				System.out.println("" + sum);
 			}
 		});
@@ -70,6 +71,8 @@ public class MainActivity extends Activity {
 			return AndroidContentContentResolver.callAcquireUnstableContentProviderClient(this);
 		case _android_util_base64_decode:
 			return AndroidUtilBase64.callDecode();
+		case _android_util_base64_encode:
+			return AndroidUtilBase64.callEncode();
 		default:
 			return 0l;
 		}
