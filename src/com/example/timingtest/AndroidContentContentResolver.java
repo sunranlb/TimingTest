@@ -9,6 +9,7 @@ import android.content.Context;
 import android.net.Uri;
 import android.provider.ContactsContract;
 import android.provider.ContactsContract.CommonDataKinds.StructuredName;
+import android.provider.ContactsContract.Contacts;
 import android.provider.ContactsContract.Data;
 import android.provider.ContactsContract.RawContacts;
 
@@ -90,6 +91,16 @@ public class AndroidContentContentResolver {
 			e1.printStackTrace();
 			return -1l;
 		}
+		return e - b;
+	}
+
+	public static long callQuery(Context c) {
+		ContentResolver cr = c.getContentResolver();
+		String[] col = { Contacts._ID,Contacts.DISPLAY_NAME,};
+		long b = 0, e = 0;
+		b = System.nanoTime();
+		cr.query(Contacts.CONTENT_URI, col, null,null,null);
+		e = System.nanoTime();
 		return e - b;
 	}
 }
