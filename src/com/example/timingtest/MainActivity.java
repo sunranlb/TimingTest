@@ -23,6 +23,7 @@ public class MainActivity extends Activity {
 	private static final int _android_content_ContentResolver_callOpenAssetFileDescriptor = 5;
 	private static final int _android_content_ContentResolver_callOpenInputStream = 6;
 	private static final int _android_content_ContentResolver_callQuery = 7;
+	private static final int _android_content_ContentResolver_callUpdate = 8;
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -32,7 +33,7 @@ public class MainActivity extends Activity {
 		btn1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				long sum =AndroidContentContentResolver.callQuery(MainActivity.this);
+				long sum =AndroidContentContentResolver.callUpdate(MainActivity.this);
 				System.out.println("" + sum);
 			}
 		});
@@ -57,6 +58,8 @@ public class MainActivity extends Activity {
 			return AndroidContentContentResolver.callOpenInputStream(this);
 		case _android_content_ContentResolver_callQuery:
 			return AndroidContentContentResolver.callQuery(this);
+		case _android_content_ContentResolver_callUpdate:
+			return AndroidContentContentResolver.callUpdate(this);
 		default:
 			return 0l;
 		}

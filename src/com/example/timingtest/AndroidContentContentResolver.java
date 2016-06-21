@@ -57,7 +57,6 @@ public class AndroidContentContentResolver {
 		v.put(Data.MIMETYPE, StructuredName.CONTENT_ITEM_TYPE);
 		v.put(StructuredName.DISPLAY_NAME, "zds");
 		long b = System.nanoTime();
-		// System.out.println(cr.insert(Data.CONTENT_URI, v));
 		cr.insert(Data.CONTENT_URI, v);
 		long e = System.nanoTime();
 		return e - b;
@@ -100,6 +99,17 @@ public class AndroidContentContentResolver {
 		long b = 0, e = 0;
 		b = System.nanoTime();
 		cr.query(Contacts.CONTENT_URI, col, null,null,null);
+		e = System.nanoTime();
+		return e - b;
+	}
+	
+	public static long callUpdate(Context c) {
+		ContentResolver cr = c.getContentResolver();
+		ContentValues v = new ContentValues();
+		v.put(Contacts.DISPLAY_NAME, "zdszds");
+		long b = 0, e = 0;
+		b = System.nanoTime();
+		cr.update(Contacts.CONTENT_URI, v, Contacts.DISPLAY_NAME + " = ?", new String[]{"zds"});
 		e = System.nanoTime();
 		return e - b;
 	}
