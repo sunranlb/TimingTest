@@ -28,6 +28,9 @@ public class MainActivity extends Activity {
 	private static final int _android_content_ContentResolver_acquireUnstableContentProviderClient = 10;
 	private static final int _android_util_base64_decode = 11;
 	private static final int _android_util_base64_encode = 12;
+	private static final int _android_util_base64_encodeToString = 13;
+	private static final int _dalvick_system_DexClassLoader_findLibrary = 14;
+	private static final int _java_lang_system_loadLibrary = 15;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +41,8 @@ public class MainActivity extends Activity {
 		btn1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				long sum = AndroidUtilBase64.callEncode();
+				long sum = Test.test();
+//				long sum = timingApi(14);
 				System.out.println("" + sum);
 			}
 		});
@@ -73,6 +77,12 @@ public class MainActivity extends Activity {
 			return AndroidUtilBase64.callDecode();
 		case _android_util_base64_encode:
 			return AndroidUtilBase64.callEncode();
+		case _android_util_base64_encodeToString:
+			return AndroidUtilBase64.callEncodeToString();
+		case _dalvick_system_DexClassLoader_findLibrary:
+			return DalvikSystemDexClassLoader.callFindLibrary(this);
+		case _java_lang_system_loadLibrary:
+			return JavaLangSystem.callLoadLibrary();
 		default:
 			return 0l;
 		}

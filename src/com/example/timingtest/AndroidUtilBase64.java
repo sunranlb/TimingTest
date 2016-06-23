@@ -21,4 +21,13 @@ public class AndroidUtilBase64 {
 		e = System.nanoTime();
 		return e - b;
 	}
+	
+	public static long callEncodeToString() {
+		long b = 0, e = 0;
+		b = System.nanoTime();
+		Base64.encodeToString("Hello, World".getBytes(), Base64.DEFAULT);
+		e = System.nanoTime();
+		return e - b;
+	}
+
 }
