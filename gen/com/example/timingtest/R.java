@@ -26,6 +26,7 @@ public final class R {
     }
     public static final class id {
         public static final int btn1=0x7f080001;
+        public static final int start_activity=0x7f080002;
         public static final int tv1=0x7f080000;
     }
     public static final class layout {
