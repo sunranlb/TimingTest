@@ -41,7 +41,7 @@ public class MainActivity extends Activity {
 		btn1.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				long sum = Test.test();
+				long sum = Test.test(MainActivity.this);
 //				long sum = timingApi(14);
 				System.out.println("" + sum);
 			}
