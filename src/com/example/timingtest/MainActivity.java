@@ -3,6 +3,7 @@ package com.example.timingtest;
 import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -14,6 +15,7 @@ public class MainActivity extends Activity {
 
 	private TextView tv1;
 	private Button btn1;
+	private Button newActivityBtn;
 
 	private static final int _android_accounts_AccountManager_getAccounts = 0;
 	private static final int _android_content_ContentResolver_acquireContentProviderClient = 1;
@@ -44,6 +46,15 @@ public class MainActivity extends Activity {
 				long sum = Test.test();
 //				long sum = timingApi(14);
 				System.out.println("" + sum);
+			}
+		});
+		
+		findViewById(R.id.start_activity).setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				// TODO Auto-generated method stub
+				Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+				startActivity(intent);
 			}
 		});
 

@@ -12,6 +12,13 @@ public class SecondActivity extends Activity {
 	}
 	
 	@Override
+	protected void onStart() {
+		TimeStampUilts.stampBeforeApi("onStart");
+		super.onStart();
+		TimeStampUilts.stampAfterApi("onStart");
+	}
+	
+	@Override
 	protected void onResume() {
 		TimeStampUilts.stampBeforeApi("onResume");
 		super.onResume();
@@ -25,6 +32,24 @@ public class SecondActivity extends Activity {
 		TimeStampUilts.stampAfterApi("onPause");
 	}
 	
-	//TODO 其余声明周期 ；manifest中没加该activity
+	@Override
+	protected void onStop() {
+		TimeStampUilts.stampBeforeApi("onStop");
+		super.onStop();
+		TimeStampUilts.stampAfterApi("onStop");
+	}
 	
+	@Override
+	protected void onDestroy() {
+		TimeStampUilts.stampBeforeApi("onDestroy");
+		super.onDestroy();
+		TimeStampUilts.stampAfterApi("onDestroy");
+	}
+	
+	@Override
+	protected void onRestart() {
+		TimeStampUilts.stampBeforeApi("onRestart");
+		super.onRestart();
+		TimeStampUilts.stampAfterApi("onRestart");
+	}
 }
