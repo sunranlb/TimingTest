@@ -13,14 +13,14 @@ public class TimeStampUilts {
 	
 	public static long stampBeforeApi(String apiName) {
 		sTimeStampBefore = System.nanoTime();
-		Log.d(TAG, apiName + "前：\t" + sTimeStampBefore);
+		Log.d(TAG, apiName + "鍓嶏細\t" + sTimeStampBefore);
 		sApiNameBefore = apiName;
 		return sTimeStampBefore;
 	}
 	
 	public static long stampAfterApi(String apiName) {
 		sTimeStampAfter = System.nanoTime();
-		Log.d(TAG, apiName + "后：\t" + sTimeStampAfter);
+		Log.d(TAG, apiName + "鍚庯細\t" + sTimeStampAfter);
 		sApiNameAfter = apiName;
 		calTimeDiff();
 		return sTimeStampAfter;
@@ -29,7 +29,7 @@ public class TimeStampUilts {
 	public static long calTimeDiff() {
 		if (sApiNameAfter.equals(sApiNameBefore)) {
 			long diff = sTimeStampAfter - sTimeStampBefore;
-			Log.d(TAG, sApiNameAfter + "时间差：\t" + diff);
+			Log.d(TAG, sApiNameAfter + "鏃堕棿宸細\t" + diff);
 			return diff;
 		}
 		return 0;
