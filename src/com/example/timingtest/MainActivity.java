@@ -28,11 +28,12 @@ public class MainActivity extends Activity {
 	private static final int _android_content_ContentResolver_update = 8;
 	private static final int _android_content_ContentWrapper_getContentResolver = 9;
 	private static final int _android_content_ContentResolver_acquireUnstableContentProviderClient = 10;
-	private static final int _android_util_base64_decode = 11;
-	private static final int _android_util_base64_encode = 12;
-	private static final int _android_util_base64_encodeToString = 13;
+	private static final int _android_util_Base64_decode = 11;
+	private static final int _android_util_Base64_encode = 12;
+	private static final int _android_util_Base64_encodeToString = 13;
 	private static final int _dalvick_system_DexClassLoader_findLibrary = 14;
-	private static final int _java_lang_system_loadLibrary = 15;
+	private static final int _java_lang_System_loadLibrary = 15;
+	private static final int _java_lang_Classloader_loadClass = 16;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -84,16 +85,18 @@ public class MainActivity extends Activity {
 			return AndroidContentContextWrapper.callGetContentResolver(this);
 		case _android_content_ContentResolver_acquireUnstableContentProviderClient:
 			return AndroidContentContentResolver.callAcquireUnstableContentProviderClient(this);
-		case _android_util_base64_decode:
+		case _android_util_Base64_decode:
 			return AndroidUtilBase64.callDecode();
-		case _android_util_base64_encode:
+		case _android_util_Base64_encode:
 			return AndroidUtilBase64.callEncode();
-		case _android_util_base64_encodeToString:
+		case _android_util_Base64_encodeToString:
 			return AndroidUtilBase64.callEncodeToString();
 		case _dalvick_system_DexClassLoader_findLibrary:
 			return DalvikSystemDexClassLoader.callFindLibrary(this);
-		case _java_lang_system_loadLibrary:
+		case _java_lang_System_loadLibrary:
 			return JavaLangSystem.callLoadLibrary();
+		case _java_lang_Classloader_loadClass:
+			return JavaLangClassloader.callLoadClass(this);
 		default:
 			return 0l;
 		}

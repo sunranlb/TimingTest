@@ -1,24 +1,16 @@
 package com.example.timingtest;
 
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
-import java.net.URI;
 
-import dalvik.system.DexClassLoader;
-import dalvik.system.PathClassLoader;
-
-import DexTest.DexHello;
 import DexTest.DexHelper;
 import android.content.Context;
 import android.os.Environment;
-import android.util.Base64;
-import android.widget.Toast;
+import dalvik.system.DexClassLoader;
 
-public class Test {
-	public static long test(Context c) {
+public class JavaLangClassloader {
+	public static long callLoadClass(Context c) {
 		long b = 0, e = 0;
 		DexHelper.CopyAssertJarToFile(c, "testdex.jar", "testdex.jar");
 		File file = new File(Environment.getExternalStorageDirectory()
@@ -28,7 +20,10 @@ public class Test {
 				optimizedDexOutputPath.getAbsolutePath(), null,
 				c.getClassLoader());
 		try {
+			TimeStampUilts.stampBeforeApi("loadClass");
 			Class<?> iclass = classLoader.loadClass("DexTest.DexHello");
+			TimeStampUilts.stampAfterApi("loadClass");
+			//以下用于检测加载成功性
 			Constructor<?> istructor = iclass.getConstructor(Context.class);
 			Method method = iclass.getMethod("hello", null);
 			String data = (String) method.invoke(istructor.newInstance(c),
