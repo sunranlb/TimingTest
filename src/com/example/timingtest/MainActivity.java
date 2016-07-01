@@ -12,7 +12,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-public class MainActivity extends Activity {
+public class MainActivity extends Activity implements View.OnClickListener{
 
 	private TextView tv1;
 	private Button btn1;
@@ -51,38 +51,9 @@ public class MainActivity extends Activity {
 			}
 		});
 		
-		findViewById(R.id.start_activity).setOnClickListener(new View.OnClickListener() {
-			@Override
-			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				Intent intent = new Intent(MainActivity.this, SecondActivity.class);
-				TimeStampUilts.stampBeforeApi("startActivity");
-				startActivity(intent);
-				TimeStampUilts.stampAfterApi("startActivity");
-			}
-		});
-		
-		findViewById(R.id.start_service).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, MyService.class);
-				TimeStampUilts.stampBeforeApi("startService");
-				startService(intent);
-				TimeStampUilts.stampAfterApi("startService");
-			}
-		});
-		
-		findViewById(R.id.bind_service).setOnClickListener(new View.OnClickListener() {
-			
-			@Override
-			public void onClick(View v) {
-				Intent intent = new Intent(MainActivity.this, MyService.class);
-				TimeStampUilts.stampBeforeApi("bindService");
-				bindService(intent, connection, Activity.BIND_AUTO_CREATE);
-				TimeStampUilts.stampAfterApi("bindService");
-			}
-		});
+		findViewById(R.id.start_activity).setOnClickListener(this);
+		findViewById(R.id.start_service).setOnClickListener(this);
+		findViewById(R.id.bind_service).setOnClickListener(this);
 
 	}
 
@@ -132,4 +103,28 @@ public class MainActivity extends Activity {
 		
 		public void onServiceDisconnected(android.content.ComponentName name) {};
 	};
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.start_activity:
+			Intent intent = new Intent(this, SecondActivity.class);
+			TimeStampUilts.stampBeforeApi("startActivity");
+			startActivity(intent);
+			TimeStampUilts.stampAfterApi("startActivity");
+			break;
+		case R.id.start_service:
+			intent = new Intent(this, MyService.class);
+			TimeStampUilts.stampBeforeApi("startService");
+			startService(intent);
+			TimeStampUilts.stampAfterApi("startService");
+			break;
+		case R.id.bind_service:
+			intent = new Intent(MainActivity.this, MyService.class);
+			TimeStampUilts.stampBeforeApi("bindService");
+			bindService(intent, connection, Activity.BIND_AUTO_CREATE);
+			TimeStampUilts.stampAfterApi("bindService");
+			break;
+		}
+	}
 }
