@@ -4,6 +4,7 @@ import android.accounts.Account;
 import android.accounts.AccountManager;
 import android.app.Activity;
 import android.content.Intent;
+import android.content.ServiceConnection;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -55,7 +56,31 @@ public class MainActivity extends Activity {
 			public void onClick(View v) {
 				// TODO Auto-generated method stub
 				Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+				TimeStampUilts.stampBeforeApi("startActivity");
 				startActivity(intent);
+				TimeStampUilts.stampAfterApi("startActivity");
+			}
+		});
+		
+		findViewById(R.id.start_service).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this, MyService.class);
+				TimeStampUilts.stampBeforeApi("startService");
+				startService(intent);
+				TimeStampUilts.stampAfterApi("startService");
+			}
+		});
+		
+		findViewById(R.id.bind_service).setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent(MainActivity.this, MyService.class);
+				TimeStampUilts.stampBeforeApi("bindService");
+				bindService(intent, connection, Activity.BIND_AUTO_CREATE);
+				TimeStampUilts.stampAfterApi("bindService");
 			}
 		});
 
@@ -101,4 +126,10 @@ public class MainActivity extends Activity {
 			return 0l;
 		}
 	}
+	
+	private ServiceConnection connection = new ServiceConnection() {
+		public void onServiceConnected(android.content.ComponentName name, android.os.IBinder service) {};
+		
+		public void onServiceDisconnected(android.content.ComponentName name) {};
+	};
 }
