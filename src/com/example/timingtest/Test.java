@@ -1,4 +1,4 @@
- package com.example.timingtest;
+package com.example.timingtest;
 
 import java.io.BufferedReader;
 import java.io.DataOutputStream;
@@ -16,6 +16,8 @@ import dalvik.system.PathClassLoader;
 import DexTest.DexHello;
 import DexTest.DexHelper;
 import android.content.Context;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Environment;
 import android.util.Base64;
 import android.util.Log;
@@ -24,27 +26,10 @@ import android.widget.Toast;
 public class Test {
 	public static long test(Context c) {
 		long b = 0, e = 0;
-		
-		DexHelper.CopyAssertJarToFile(c, "testdex.jar", "testdex.jar");
-		File file = new File(Environment.getExternalStorageDirectory()
-				.toString() + File.separator + "testdex.jar");
-		
-		PathClassLoader pcl = new PathClassLoader(file.getAbsolutePath(),
-				file.getAbsolutePath(), c.getClass().getClassLoader());
-		
-		try {
-			TimeStampUilts.stampBeforeApi("loadClass");
-			Class<?> iclass = pcl.loadClass("DexTest.DexHello");
-			TimeStampUilts.stampAfterApi("loadClass");
-			Constructor<?> istructor = iclass.getConstructor(Context.class);
-			Method method = iclass.getMethod("hello", null);
-			String data = (String) method.invoke(istructor.newInstance(c),
-					null);
-			System.out.println("data = "+data);
-		} catch (Exception ee) {
-			ee.printStackTrace();
-		}
-		
+		LocationManager lm = (LocationManager) c
+				.getSystemService(Context.LOCATION_SERVICE);
+		Location l = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		System.out.println("long:"+l.getLongitude()+",la:"+l.getLatitude());
 		
 		b = System.nanoTime();
 		e = System.nanoTime();
