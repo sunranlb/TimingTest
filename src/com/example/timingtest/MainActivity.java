@@ -36,6 +36,7 @@ public class MainActivity extends Activity implements View.OnClickListener{
 	private static final int _java_lang_System_loadLibrary = 15;
 	private static final int _java_lang_Classloader_loadClass = 16;
 	private static final int _java_lang_Runtime_exec = 17;
+	private static final int _dalvick_system_PathClassLoader_loadClass = 18;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -96,6 +97,8 @@ public class MainActivity extends Activity implements View.OnClickListener{
 			return JavaLangClassloader.callLoadClass(this);
 		case _java_lang_Runtime_exec:
 			return JavaLangRuntime.callExec();
+		case _dalvick_system_PathClassLoader_loadClass:
+			return DalvikSystemPathClassLoader.callLoadClass(this);
 		default:
 			return 0l;
 		}
