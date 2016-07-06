@@ -21,6 +21,7 @@ import android.os.Bundle;
  * sendBroadcast
  * unregisterReceiver
  * Intent
+ * sendOrderedBroadcast
  */
 public class SecondActivity extends Activity {
 	private MyBroadcastReceiver mbr;
@@ -55,6 +56,7 @@ public class SecondActivity extends Activity {
 		
 		Bundle b = new Bundle();
 		b.putString("name", "timingtest from bundle");
+
 		TimeStampUilts.stampBeforeApi("putExtra");
 		i.putExtra("bundle", b);
 		TimeStampUilts.stampAfterApi("putExtra");
@@ -63,6 +65,9 @@ public class SecondActivity extends Activity {
 		sendBroadcast(i);
 		TimeStampUilts.stampAfterApi("sendBroadcast");
 		
+		TimeStampUilts.stampBeforeApi("sendOrderedBroadcast");
+		sendOrderedBroadcast(i, null);
+		TimeStampUilts.stampAfterApi("sendOrderedBroadcast");
 		
 	}
 	
