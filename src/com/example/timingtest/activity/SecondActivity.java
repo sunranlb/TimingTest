@@ -20,6 +20,7 @@ import android.os.Bundle;
  * putExtra
  * sendBroadcast
  * unregisterReceiver
+ * Intent
  */
 public class SecondActivity extends Activity {
 	private MyBroadcastReceiver mbr;
@@ -44,7 +45,10 @@ public class SecondActivity extends Activity {
 		registerReceiver(mbr, ftr);
 		TimeStampUilts.stampAfterApi("registerReceiver");
 		
+		TimeStampUilts.stampBeforeApi("Intent");
 		Intent i = new Intent();
+		TimeStampUilts.stampAfterApi("Intent");
+		
 		TimeStampUilts.stampBeforeApi("setAction");
 		i.setAction("com.example.timingtest.ACTION");
 		TimeStampUilts.stampAfterApi("setAction");
