@@ -1,5 +1,6 @@
 package com.example.timingtest.activity;
 
+import com.example.timingtest.independent.TestLoacation;
 import com.example.timingtest.util.TimeStampUilts;
 
 import android.app.Activity;
@@ -48,6 +49,8 @@ public class SecondActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		TimeStampUilts.stampAfterApi("onCreate");
 
+		TestLoacation.callLocation(this);
+		
 		TimeStampUilts.stampBeforeApi("getSystemService");
 		PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
 		TimeStampUilts.stampAfterApi("getSystemService");

@@ -5,23 +5,28 @@ import com.example.timingtest.util.TimeStampUilts;
 import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
-
+/*
+ * getLastKnownLocation
+ * getLongitude
+ * getLatitude
+ */
 public class TestLoacation {
 
-	public static long callLocation(Context c) {
-		long b = 0, e = 0;
+	public static void callLocation(Context c) {
 		LocationManager lm = (LocationManager) c
 				.getSystemService(Context.LOCATION_SERVICE);
-		TimeStampUilts.stampBeforeApi("Location");
-		Location l = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		double lo = l.getLongitude();
-		double la = l.getLatitude();
-		TimeStampUilts.stampAfterApi("Location");
-		System.out.println("long:"+lo+",la:"+la);
 		
-		b = System.nanoTime();
-		e = System.nanoTime();
-		return e - b;
+		TimeStampUilts.stampBeforeApi("getLastKnownLocation");
+		Location l = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
+		TimeStampUilts.stampAfterApi("getLastKnownLocation");
+		
+		TimeStampUilts.stampBeforeApi("getLongitude");
+		double lo = l.getLongitude();
+		TimeStampUilts.stampAfterApi("getLongitude");
+		
+		TimeStampUilts.stampBeforeApi("getLatitude");
+		double la = l.getLatitude();
+		TimeStampUilts.stampAfterApi("getLatitude");
 	}
 
 
