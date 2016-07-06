@@ -1,4 +1,4 @@
-package com.example.timingtest;
+package com.example.timingtest.activity;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;

@@ -1,12 +1,14 @@
-package com.example.timingtest;
+package com.example.timingtest.independent;
 
 import java.io.File;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+import com.example.timingtest.dex.DexHelper;
+import com.example.timingtest.util.TimeStampUilts;
+
 import dalvik.system.PathClassLoader;
 
-import DexTest.DexHelper;
 import android.content.Context;
 import android.os.Environment;
 

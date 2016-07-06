@@ -1,4 +1,4 @@
-package DexTest;
+package com.example.timingtest.dex;
 
 import android.content.Context;
 

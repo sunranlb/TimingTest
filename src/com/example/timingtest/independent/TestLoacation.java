@@ -1,4 +1,6 @@
-package com.example.timingtest;
+package com.example.timingtest.independent;
+
+import com.example.timingtest.util.TimeStampUilts;
 
 import android.content.Context;
 import android.location.Location;

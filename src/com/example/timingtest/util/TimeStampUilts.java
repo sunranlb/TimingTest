@@ -1,4 +1,4 @@
-package com.example.timingtest;
+package com.example.timingtest.util;
 
 import android.util.Log;
 

@@ -1,4 +1,4 @@
-package com.example.timingtest;
+package com.example.timingtest.independent;
 
 import android.content.ContentResolver;
 import android.content.ContentValues;

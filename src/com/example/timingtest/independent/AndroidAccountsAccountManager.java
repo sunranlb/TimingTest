@@ -1,4 +1,4 @@
-package com.example.timingtest;
+package com.example.timingtest.independent;
 
 import android.accounts.Account;
 import android.accounts.AccountManager;
