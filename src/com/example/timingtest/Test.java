@@ -26,11 +26,8 @@ import android.widget.Toast;
 public class Test {
 	public static long test(Context c) {
 		long b = 0, e = 0;
-		LocationManager lm = (LocationManager) c
-				.getSystemService(Context.LOCATION_SERVICE);
-		Location l = lm.getLastKnownLocation(LocationManager.NETWORK_PROVIDER);
-		System.out.println("long:"+l.getLongitude()+",la:"+l.getLatitude());
-		
+
+		TestContextAndIntent.callContextAndIntent(c);
 		b = System.nanoTime();
 		e = System.nanoTime();
 		return e - b;

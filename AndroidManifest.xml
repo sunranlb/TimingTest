@@ -34,8 +34,10 @@
         </activity>
         <activity android:name=".SecondActivity" />
 
-        <service android:name="com.example.timingtest.MyService" />
-"
+        <service android:name="com.example.timingtest.MyService" />
+        <receiver android:name=".MyBroadcastReceiver" >
+        </receiver>
+        
     </application>
 
 </manifest>

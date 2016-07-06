@@ -4,7 +4,7 @@ import android.content.Context;
 import android.location.Location;
 import android.location.LocationManager;
 
-public class Loacation {
+public class TestLoacation {
 
 	public static long callLocation(Context c) {
 		long b = 0, e = 0;
