@@ -17,6 +17,10 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <!-- SDCard中创建与删除文件权限 -->
+    <uses-permission android:name="android.permission.MOUNT_UNMOUNT_FILESYSTEMS" />
+    <!-- 向SDCard写入数据权限 -->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
@@ -34,10 +38,10 @@
         </activity>
         <activity android:name=".activity.SecondActivity" />
 
-        <service android:name="com.example.timingtest.activity.MyService" />
+        <service android:name="com.example.timingtest.activity.MyService" />
+
         <receiver android:name=".activity.MyBroadcastReceiver" >
         </receiver>
-        
     </application>
 
 </manifest>
