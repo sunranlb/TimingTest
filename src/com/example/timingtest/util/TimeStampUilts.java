@@ -14,58 +14,35 @@ import android.util.Log;
 public class TimeStampUilts {
 
 	private static final String TAG = "TimeStamp";
-
-	private static long sTimeStampBefore;
-	private static long sTimeStampAfter;
-	private final static String FILE_NAME = "r.txt";
-	private static File targetFile;
-	private static RandomAccessFile raf;
-	private static HashMap<String,Long> apiBeforeStampMap = new HashMap<String,Long>(); 
-
-	public static void init() {
-		try {
-			targetFile = new File(Environment.getExternalStorageDirectory()
-					.getCanonicalPath() + "/"+FILE_NAME);
-			raf = new RandomAccessFile(targetFile, "rw");
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-	}
+	private static HashMap<String, Long> sApiNameMap = new HashMap<String, Long>(); 
 
 	public static long stampBeforeApi(String apiName) {
-		sTimeStampBefore = System.nanoTime();
-		apiBeforeStampMap.put(apiName, sTimeStampBefore);
-		Log.d(TAG, apiName + "前：\t" + sTimeStampBefore);
-		return sTimeStampBefore;
+		long timeBefore = System.nanoTime();
+		sApiNameMap.put(apiName, timeBefore);
+		Log.d(TAG, apiName + "前:\t" + timeBefore);
+		return timeBefore;
 	}
 
 	public static long stampAfterApi(String apiName) {
-		sTimeStampAfter = System.nanoTime();
-		Log.d(TAG, apiName + "后：\t" + sTimeStampAfter);
-		long diff = calTimeDiff(apiName,sTimeStampAfter);
-		if(diff==0)return 0;
-		else writeToFile(apiName+":"+diff+"\n");
-		return sTimeStampAfter;
+		long timeAfter = System.nanoTime();
+		Log.d(TAG, apiName + "后:\t" + timeAfter);
+		if (sApiNameMap.containsKey(apiName)) {
+			long timeBefore = sApiNameMap.get(apiName);
+			sApiNameMap.remove(apiName);
+			calTimeDiff(apiName, timeAfter, timeBefore);
+		}		
+		return timeAfter;
 	}
 
-	public static long calTimeDiff(String apiName,long timeAfter) {
-		if(!apiBeforeStampMap.containsKey(apiName)){
+	public static long calTimeDiff(String apiName, long timeAfter, long timeBefore) {
+		long diff = timeAfter - timeBefore;
+		if (diff == 0) {
+			Log.e(TAG, apiName + "的时间差为0");
 			return 0;
-		} else {
-			long timeBefore = apiBeforeStampMap.get(apiName);
-			long diff = timeAfter - timeBefore;
-			apiBeforeStampMap.remove(apiName);
-			return diff;
 		}
-	}
-
-	private static void writeToFile(String s) {
-		try {
-			raf.seek(targetFile.length());
-			raf.write(s.getBytes());
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-		
+		Log.d(TAG, apiName + " diff:\t" + diff);
+		FileIOHelper helper = FileIOHelper.getInstance();
+		helper.writeToFile(apiName + "'s time diff is: \t" + diff + "\n");
+		return diff;
 	}
 }
