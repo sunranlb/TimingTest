@@ -4,25 +4,40 @@ import com.example.timingtest.util.TimeStampUilts;
 
 import android.content.Context;
 import android.telephony.PhoneStateListener;
+import android.telephony.SmsManager;
 import android.telephony.TelephonyManager;
 /*
  * getSystemService
  * onCallStateChanged
+ * sendTextMessage
+ * getDeviceId
  */
 public class TestMobileComm {
 	public static void callMobileCommApis(Context c) {
-		// 获得相应的系统服务
+		/*
+		 * getSystemService
+		 * onCallStateChanged
+		 */
+		//获得相应的系统服务
 		TimeStampUilts.stampBeforeApi("getSystemService");
 		TelephonyManager tm = (TelephonyManager) c
 				.getSystemService(Context.TELEPHONY_SERVICE);
 		TimeStampUilts.stampAfterApi("getSystemService");
 
+		TimeStampUilts.stampBeforeApi("getDeviceId");
+		tm.getDeviceId();
+		TimeStampUilts.stampAfterApi("getDeviceId");
+		
 		// 创建Listener
 		MyPhoneCallListener myPhoneCallListener = new MyPhoneCallListener();
 
 		// 注册监听 设置监听的State
 		tm.listen(myPhoneCallListener, PhoneStateListener.LISTEN_CALL_STATE);
 
+		SmsManager smsM = SmsManager.getDefault();
+		TimeStampUilts.stampBeforeApi("sendTextMessage");
+//		smsM.sendTextMessage("+8618501957842", null, "zds", null, null);
+		TimeStampUilts.stampAfterApi("sendTextMessage");
 	}
 
 	// 实现PhoneStateListener listener并实现相应的方法
