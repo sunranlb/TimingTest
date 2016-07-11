@@ -13,7 +13,7 @@ import android.util.Log;
  */
 public class TestLoacation {
 
-	public static void callLocation(Context c) {
+	public static void callLocationApis(Context c) {
 		LocationManager lm = (LocationManager) c
 				.getSystemService(Context.LOCATION_SERVICE);
 		

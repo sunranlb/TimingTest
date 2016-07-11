@@ -1,6 +1,7 @@
 package com.example.timingtest.activity;
 
 import com.example.timingtest.independent.TestLoacation;
+import com.example.timingtest.independent.TestMobileComm;
 import com.example.timingtest.util.TimeStampUilts;
 
 import android.app.Activity;
@@ -49,11 +50,20 @@ public class SecondActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		TimeStampUilts.stampAfterApi("onCreate");
 
-		TestLoacation.callLocation(this);
+		/*
+		 * getSystemService
+		 * onCallStateChanged
+		 */
+		TestMobileComm.callMobileCommApis(this);
 		
-		TimeStampUilts.stampBeforeApi("getSystemService");
-		PowerManager powerManager = (PowerManager) getSystemService(Context.POWER_SERVICE);
-		TimeStampUilts.stampAfterApi("getSystemService");
+		
+		/*
+		 * getLastKnownLocation
+		 * getLongitude
+		 * getLatitude
+		 */
+		TestLoacation.callLocationApis(this);
+
 		
 		TimeStampUilts.stampBeforeApi("getPackageManager");
 		PackageManager pkgMgr = getPackageManager();
