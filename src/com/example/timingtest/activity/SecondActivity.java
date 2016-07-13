@@ -2,6 +2,7 @@ package com.example.timingtest.activity;
 
 import com.example.timingtest.independent.TestLoacation;
 import com.example.timingtest.independent.TestMobileComm;
+import com.example.timingtest.independent.TestNetworking;
 import com.example.timingtest.util.TimeStampUilts;
 
 import android.app.Activity;
@@ -50,6 +51,9 @@ public class SecondActivity extends Activity {
 		super.onCreate(savedInstanceState);
 		TimeStampUilts.stampAfterApi("onCreate");
 
+		TestNetworking.callNetworkingApis(this);
+		
+		
 		/*
 		 * getSystemService
 		 * onCallStateChanged
