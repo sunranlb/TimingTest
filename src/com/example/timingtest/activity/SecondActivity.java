@@ -1,8 +1,10 @@
 package com.example.timingtest.activity;
 
+import com.example.timingtest.R;
 import com.example.timingtest.independent.TestLoacation;
 import com.example.timingtest.independent.TestMobileComm;
 import com.example.timingtest.independent.TestNetworking;
+import com.example.timingtest.independent.TestPeripherals;
 import com.example.timingtest.util.TimeStampUilts;
 
 import android.app.Activity;
@@ -13,6 +15,8 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.view.View;
+import android.widget.Button;
 
 /*
  * onCreate
@@ -32,6 +36,14 @@ import android.os.PowerManager;
  * getSystemService
  * getPackageManager
  * getResources
+ * setWifiEnabled
+ * execute
+ * Socket
+ * getSystemService 
+ * onCallStateChanged
+ * getLastKnownLocation
+ * getLongitude 
+ * getLatitude
  */
 public class SecondActivity extends Activity {
 	private MyBroadcastReceiver mbr;
@@ -49,30 +61,36 @@ public class SecondActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		TimeStampUilts.stampBeforeApi("onCreate");
 		super.onCreate(savedInstanceState);
-		TimeStampUilts.stampAfterApi("onCreate");
+		setContentView(R.layout.activity_second);
 
-		TestNetworking.callNetworkingApis(this);
+		Button testBtn = (Button)findViewById(R.id.test_btn);
+		testBtn.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				TestPeripherals.callPeripheralsApis(SecondActivity.this);
+			}
+		});
 		
-		
+		TimeStampUilts.stampAfterApi("onCreate");
 		/*
-		 * getSystemService
-		 * onCallStateChanged
+		 * setWifiEnabled execute Socket
+		 */
+		TestNetworking.callNetworkingApis(this);
+
+		/*
+		 * getSystemService onCallStateChanged
 		 */
 		TestMobileComm.callMobileCommApis(this);
-		
-		
+
 		/*
-		 * getLastKnownLocation
-		 * getLongitude
-		 * getLatitude
+		 * getLastKnownLocation getLongitude getLatitude
 		 */
 		TestLoacation.callLocationApis(this);
 
-		
 		TimeStampUilts.stampBeforeApi("getPackageManager");
 		PackageManager pkgMgr = getPackageManager();
 		TimeStampUilts.stampAfterApi("getPackageManager");
-		
+
 		TimeStampUilts.stampBeforeApi("getResources");
 		getResources();
 		TimeStampUilts.stampAfterApi("getResources");
