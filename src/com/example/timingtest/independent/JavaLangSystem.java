@@ -1,11 +1,14 @@
 package com.example.timingtest.independent;
 
+import com.example.timingtest.util.TimeStampUilts;
+
+/*
+ * System.loadLibrary
+ */
 public class JavaLangSystem {
-	public static long callLoadLibrary() {
-		long b = 0, e = 0;
-		b = System.nanoTime();
+	public static void callLoadLibrary() {
+		TimeStampUilts.stampBeforeApi("System.loadLibrary");
 		System.loadLibrary("test");
-		e = System.nanoTime();
-		return e - b;
+		TimeStampUilts.stampAfterApi("System.loadLibrary");
 	}
 }

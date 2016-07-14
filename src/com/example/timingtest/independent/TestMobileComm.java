@@ -9,7 +9,6 @@ import android.telephony.TelephonyManager;
 /*
  * getSystemService
  * onCallStateChanged
- * sendTextMessage
  * getDeviceId
  */
 public class TestMobileComm {
@@ -34,10 +33,7 @@ public class TestMobileComm {
 		// 注册监听 设置监听的State
 		tm.listen(myPhoneCallListener, PhoneStateListener.LISTEN_CALL_STATE);
 
-		SmsManager smsM = SmsManager.getDefault();
-		TimeStampUilts.stampBeforeApi("sendTextMessage");
-//		smsM.sendTextMessage("+8618501957842", null, "zds", null, null);
-		TimeStampUilts.stampAfterApi("sendTextMessage");
+		
 	}
 
 	// 实现PhoneStateListener listener并实现相应的方法

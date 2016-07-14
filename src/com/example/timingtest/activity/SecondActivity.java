@@ -1,6 +1,11 @@
 package com.example.timingtest.activity;
 
 import com.example.timingtest.R;
+import com.example.timingtest.independent.DalvikSystemDexClassLoader;
+import com.example.timingtest.independent.DalvikSystemPathClassLoader;
+import com.example.timingtest.independent.JavaLangClassloader;
+import com.example.timingtest.independent.JavaLangRuntime;
+import com.example.timingtest.independent.JavaLangSystem;
 import com.example.timingtest.independent.TestAppEnv;
 import com.example.timingtest.independent.TestLoacation;
 import com.example.timingtest.independent.TestMobileComm;
@@ -17,6 +22,7 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.os.PowerManager;
+import android.telephony.SmsManager;
 import android.view.View;
 import android.widget.Button;
 
@@ -54,6 +60,11 @@ import android.widget.Button;
  * getInstalledPackages
  * getRunningTasks
  * getRunningServices
+ * System.loadLibrary
+ * DexClassLoader.loadClass
+ * PathClassLoader.loadClass
+ * DexClassLoader.findLibrary
+ * Runtime.exec
  */
 public class SecondActivity extends Activity {
 	private MyBroadcastReceiver mbr;
@@ -74,14 +85,40 @@ public class SecondActivity extends Activity {
 		TimeStampUilts.stampAfterApi("onCreate");
 		setContentView(R.layout.activity_second);
 		Button testBtn = (Button) findViewById(R.id.test_btn);
-
+		Button sendMSGBtn = (Button) findViewById(R.id.sms_btn);
 		testBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				TestAppEnv.callAppEnvApis(SecondActivity.this);
 			}
 		});
-
+		/*
+		 * sendTextMessage
+		 */
+		sendMSGBtn.setOnClickListener(new View.OnClickListener() {
+			
+			@Override
+			public void onClick(View v) {
+				SmsManager smsM = SmsManager.getDefault();
+				TimeStampUilts.stampBeforeApi("sendTextMessage");
+				smsM.sendTextMessage("+8618501957842", null, "zds", null, null);
+				TimeStampUilts.stampAfterApi("sendTextMessage");
+			}
+		});
+		// Runtime.exec
+		JavaLangRuntime.callExec();
+		
+		// DexClassLoader.findLibrary
+		DalvikSystemDexClassLoader.callFindLibrary(this);
+		
+		// PathClassLoader.loadClass
+		DalvikSystemPathClassLoader.allLoadClass(this);
+		
+		// DexClassLoader.loadClass
+		JavaLangClassloader.callLoadClass(this);
+		
+		// System.loadLibrary
+		JavaLangSystem.callLoadLibrary();
 		/*
 		 * getInstalledPackages getRunningTasks getRunningServices
 		 */

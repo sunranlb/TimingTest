@@ -11,12 +11,11 @@ import dalvik.system.PathClassLoader;
 
 import android.content.Context;
 import android.os.Environment;
-
-
+/*
+ * PathClassLoader.loadClass
+ */
 public class DalvikSystemPathClassLoader {
-	public static long callLoadClass(Context c) {
-		long b = 0, e = 0;
-		
+	public static void allLoadClass(Context c) {
 		DexHelper.CopyAssertJarToFile(c, "testdex.jar", "testdex.jar");
 		File file = new File(Environment.getExternalStorageDirectory()
 				.toString() + File.separator + "testdex.jar");
@@ -25,9 +24,11 @@ public class DalvikSystemPathClassLoader {
 				file.getAbsolutePath(), c.getClass().getClassLoader());
 		
 		try {
-			TimeStampUilts.stampBeforeApi("loadClass");
+			
+			TimeStampUilts.stampBeforeApi("PathClassLoader.loadClass");
 			Class<?> iclass = pcl.loadClass("DexTest.DexHello");
-			TimeStampUilts.stampAfterApi("loadClass");
+			TimeStampUilts.stampAfterApi("PathClassLoader.loadClass");
+			
 			Constructor<?> istructor = iclass.getConstructor(Context.class);
 			Method method = iclass.getMethod("hello", null);
 			String data = (String) method.invoke(istructor.newInstance(c),
@@ -36,11 +37,6 @@ public class DalvikSystemPathClassLoader {
 		} catch (Exception ee) {
 			ee.printStackTrace();
 		}
-		
-		
-		b = System.nanoTime();
-		e = System.nanoTime();
-		return e - b;
 	}
 
 

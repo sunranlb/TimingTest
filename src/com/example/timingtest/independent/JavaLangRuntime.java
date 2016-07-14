@@ -1,22 +1,25 @@
 package com.example.timingtest.independent;
 
+import com.example.timingtest.util.TimeStampUilts;
+
 import android.util.Log;
-
+/*
+ * Runtime.exec
+ */
 public class JavaLangRuntime {
-	public static long callExec() {
-		long b = 0, e = 0;
+	public static void callExec() {
 
-        Process process = null;
+		try {
+			Runtime runTime = Runtime.getRuntime();
 
-        try {
-            process = Runtime.getRuntime().exec("ps");
+			TimeStampUilts.stampBeforeApi("Runtime.exec");
+			runTime.exec("ps");
+			TimeStampUilts.stampAfterApi("Runtime.exec");
+
 		} catch (Exception ee) {
 			Log.e("Error", ee.getMessage());
 			ee.printStackTrace();
-		} 
-		
-		b = System.nanoTime();
-		e = System.nanoTime();
-		return e - b;
+		}
+
 	}
 }

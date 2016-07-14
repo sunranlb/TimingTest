@@ -10,10 +10,11 @@ import com.example.timingtest.util.TimeStampUilts;
 import android.content.Context;
 import android.os.Environment;
 import dalvik.system.DexClassLoader;
-
+/*
+ * DexClassLoader.loadClass
+ */
 public class JavaLangClassloader {
-	public static long callLoadClass(Context c) {
-		long b = 0, e = 0;
+	public static void callLoadClass(Context c) {
 		DexHelper.CopyAssertJarToFile(c, "testdex.jar", "testdex.jar");
 		File file = new File(Environment.getExternalStorageDirectory()
 				.toString() + File.separator + "testdex.jar");
@@ -22,9 +23,11 @@ public class JavaLangClassloader {
 				optimizedDexOutputPath.getAbsolutePath(), null,
 				c.getClassLoader());
 		try {
-			TimeStampUilts.stampBeforeApi("loadClass");
+			
+			TimeStampUilts.stampBeforeApi("DexClassLoader.loadClass");
 			Class<?> iclass = classLoader.loadClass("DexTest.DexHello");
-			TimeStampUilts.stampAfterApi("loadClass");
+			TimeStampUilts.stampAfterApi("DexClassLoader.loadClass");
+			
 			//以下用于检测加载成功性
 			Constructor<?> istructor = iclass.getConstructor(Context.class);
 			Method method = iclass.getMethod("hello", null);
@@ -35,8 +38,5 @@ public class JavaLangClassloader {
 			// TODO Auto-generated catch block
 			ee.printStackTrace();
 		}
-		b = System.nanoTime();
-		e = System.nanoTime();
-		return e - b;
 	}
 }

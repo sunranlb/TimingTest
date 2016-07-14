@@ -7,13 +7,21 @@
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.timingtest.activity.MainActivity" >
-    <Button 
+
+    <Button
         android:id="@+id/test_btn"
-        android:layout_below="@id/tv1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/tv1"
+        android:drawableEnd="@drawable/skull"
+        android:text="这个按钮仅用于调试请勿点击，否则后果自负" />
+
+    <Button
+        android:id="@+id/sms_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/test_btn"
         android:drawableEnd="@drawable/smile"
-        android:text="这个按钮仅用于调试请勿点击，否则后果自负"
-        />
+        android:text="点我向zds同学发送一条垃圾短信" />
 
 </RelativeLayout>
