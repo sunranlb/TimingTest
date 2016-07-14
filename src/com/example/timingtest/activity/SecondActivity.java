@@ -5,6 +5,7 @@ import com.example.timingtest.independent.TestLoacation;
 import com.example.timingtest.independent.TestMobileComm;
 import com.example.timingtest.independent.TestNetworking;
 import com.example.timingtest.independent.TestPeripherals;
+import com.example.timingtest.independent.TestPrivateInfo;
 import com.example.timingtest.util.TimeStampUilts;
 
 import android.app.Activity;
@@ -44,6 +45,11 @@ import android.widget.Button;
  * getLastKnownLocation
  * getLongitude 
  * getLatitude
+ * Camera.open
+ * setAudioSource
+ * query(CONTACTS)
+ * query(CALL_LOG)
+ * query(SMS)
  */
 public class SecondActivity extends Activity {
 	private MyBroadcastReceiver mbr;
@@ -61,17 +67,27 @@ public class SecondActivity extends Activity {
 	protected void onCreate(Bundle savedInstanceState) {
 		TimeStampUilts.stampBeforeApi("onCreate");
 		super.onCreate(savedInstanceState);
+		TimeStampUilts.stampAfterApi("onCreate");
 		setContentView(R.layout.activity_second);
+		Button testBtn = (Button) findViewById(R.id.test_btn);
 
-		Button testBtn = (Button)findViewById(R.id.test_btn);
 		testBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				TestPeripherals.callPeripheralsApis(SecondActivity.this);
+				TestPrivateInfo.callPrivateInfoApis(SecondActivity.this);
 			}
 		});
-		
-		TimeStampUilts.stampAfterApi("onCreate");
+
+		/*
+		 * query(CONTACTS) query(CALL_LOG) query(SMS)
+		 */
+		TestPrivateInfo.callPrivateInfoApis(this);
+
+		/*
+		 * Camera.open setAudioSource
+		 */
+		TestPeripherals.callPeripheralsApis(this);
+
 		/*
 		 * setWifiEnabled execute Socket
 		 */
