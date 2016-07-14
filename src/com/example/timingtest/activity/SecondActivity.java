@@ -1,6 +1,7 @@
 package com.example.timingtest.activity;
 
 import com.example.timingtest.R;
+import com.example.timingtest.independent.TestAppEnv;
 import com.example.timingtest.independent.TestLoacation;
 import com.example.timingtest.independent.TestMobileComm;
 import com.example.timingtest.independent.TestNetworking;
@@ -50,6 +51,9 @@ import android.widget.Button;
  * query(CONTACTS)
  * query(CALL_LOG)
  * query(SMS)
+ * getInstalledPackages
+ * getRunningTasks
+ * getRunningServices
  */
 public class SecondActivity extends Activity {
 	private MyBroadcastReceiver mbr;
@@ -74,9 +78,14 @@ public class SecondActivity extends Activity {
 		testBtn.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				TestPrivateInfo.callPrivateInfoApis(SecondActivity.this);
+				TestAppEnv.callAppEnvApis(SecondActivity.this);
 			}
 		});
+
+		/*
+		 * getInstalledPackages getRunningTasks getRunningServices
+		 */
+		TestAppEnv.callAppEnvApis(this);
 
 		/*
 		 * query(CONTACTS) query(CALL_LOG) query(SMS)
