@@ -112,7 +112,8 @@ public class SecondActivity extends Activity {
 		DalvikSystemDexClassLoader.callFindLibrary(this);
 		
 		// PathClassLoader.loadClass
-		DalvikSystemPathClassLoader.allLoadClass(this);
+		// hook后调用该api会闪退 syh 2016年07月18日
+//		DalvikSystemPathClassLoader.allLoadClass(this);
 		
 		// DexClassLoader.loadClass
 		JavaLangClassloader.callLoadClass(this);

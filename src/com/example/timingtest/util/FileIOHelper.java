@@ -17,7 +17,7 @@ import android.util.Log;
 public class FileIOHelper {
 
 	private static final String TAG = "FileIOHelper";
-	private static final String FILE_NAME = "TimingTestResult.txt";
+	private static final String FILE_NAME = "TimingTestData.txt";
 	private static FileIOHelper instance;
 	private File targetFile;
 	private RandomAccessFile raf;
