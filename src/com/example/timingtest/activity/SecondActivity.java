@@ -65,6 +65,9 @@ import android.widget.Button;
  * PathClassLoader.loadClass
  * DexClassLoader.findLibrary
  * Runtime.exec
+ * Thread.start
+ * Thread.run
+ * URI.create
  */
 public class SecondActivity extends Activity {
 	private MyBroadcastReceiver mbr;
@@ -188,6 +191,10 @@ public class SecondActivity extends Activity {
 		TimeStampUilts.stampBeforeApi("sendOrderedBroadcast");
 		sendOrderedBroadcast(i, null);
 		TimeStampUilts.stampAfterApi("sendOrderedBroadcast");
+		
+		TimeStampUilts.stampBeforeApi("Thread.start");
+		new TestThread().start();
+		TimeStampUilts.stampAfterApi("Thread.start");
 
 	}
 
@@ -235,5 +242,15 @@ public class SecondActivity extends Activity {
 		TimeStampUilts.stampBeforeApi("onRestart");
 		super.onRestart();
 		TimeStampUilts.stampAfterApi("onRestart");
+	}
+	
+	public static class TestThread extends Thread {
+		@Override
+		public void run() {
+			// TODO Auto-generated method stub
+			TimeStampUilts.stampBeforeApi("Thread.run");
+			super.run();
+			TimeStampUilts.stampAfterApi("Thread.run");
+		}
 	}
 }

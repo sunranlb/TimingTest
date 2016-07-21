@@ -1,6 +1,7 @@
 package com.example.timingtest.independent;
 
 import java.net.Socket;
+import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -17,6 +18,7 @@ import org.apache.http.message.BasicNameValuePair;
 import com.example.timingtest.util.TimeStampUilts;
 
 import android.content.Context;
+import android.net.Uri;
 import android.net.wifi.WifiManager;
 import android.util.TimingLogger;
 /*
@@ -59,10 +61,14 @@ public class TestNetworking {
         
         try{
         	TimeStampUilts.stampBeforeApi("Socket");
-            Socket skt = new Socket("192.168.1.223",9999);
+            Socket skt = new Socket("192.168.1.223", 9999);
             TimeStampUilts.stampAfterApi("Socket");
         } catch (Exception e){
         	e.printStackTrace();
         }
+        
+        TimeStampUilts.stampBeforeApi("URI.create");
+        URI uri = URI.create("http://www.baidu.com");
+        TimeStampUilts.stampAfterApi("URI.create");
 	}
 }
