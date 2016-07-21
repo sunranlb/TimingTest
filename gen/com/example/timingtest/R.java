@@ -23,13 +23,18 @@ public final class R {
     }
     public static final class drawable {
         public static final int ic_launcher=0x7f020000;
+        public static final int skull=0x7f020001;
+        public static final int smile=0x7f020002;
     }
     public static final class id {
         public static final int btn1=0x7f080001;
+        public static final int sms_btn=0x7f080003;
+        public static final int test_btn=0x7f080002;
         public static final int tv1=0x7f080000;
     }
     public static final class layout {
         public static final int activity_main=0x7f030000;
+        public static final int activity_second=0x7f030001;
     }
     public static final class raw {
         public static final int test=0x7f040000;

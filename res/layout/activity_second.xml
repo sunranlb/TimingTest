@@ -8,18 +8,20 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.example.timingtest.activity.MainActivity" >
 
-    <TextView
-        android:id="@+id/tv1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="30sp"
-        android:text="@string/hello_world" />
-    <Button 
-        android:id="@+id/btn1"
-        android:layout_below="@id/tv1"
+    <Button
+        android:id="@+id/test_btn"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:text="START!"
-        />
+        android:layout_below="@id/tv1"
+        android:drawableEnd="@drawable/skull"
+        android:text="这个按钮仅用于调试请勿点击，否则后果自负" />
+
+    <Button
+        android:id="@+id/sms_btn"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/test_btn"
+        android:drawableEnd="@drawable/smile"
+        android:text="点我向zds同学发送一条垃圾短信" />
 
 </RelativeLayout>
